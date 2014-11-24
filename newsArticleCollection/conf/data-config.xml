@@ -7,7 +7,7 @@
                         rootEntity="false"
                         dataSource="null"
                         fileName=".*.xml$"
-                        baseDir="/home/kenob/01"
+                        baseDir="/home/kenob/NYC"
                         recursive="true"
                     >
                 <entity name="nitf"
