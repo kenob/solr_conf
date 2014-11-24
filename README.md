@@ -9,13 +9,14 @@ Use as follows:
 - Delete the solr folder
 - Clone this repository, and rename the resulting folder to "solr"
 
-<h3> NYC Corpus </h3>
+<h3>Corpus-Specific Setup </h3>
+<h5> NYC Corpus </h5>
 - Create a folder 
 - Download all tgz files from the NYC_* folder on ublearns, and place them in a folder
 - Extract the tgz files
 - Change the baseDir property on line 10 of newsArticleCollection/data-config.xml to the <strong>ABSOLUTE</strong> path of the folder created above
 
-Usage
+<h3> Usage </h3>
 - Run the solr admin panel, navigate to the newsArticleCollection core, and execute a dataImport
 - Search with an empty query(q = \*:\*), and you should get some results.
 
