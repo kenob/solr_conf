@@ -20,3 +20,7 @@ This repository currently holds the solr files for indexing news articles from t
 - Run the solr admin panel, navigate to the newsArticleCollection core, and execute a dataImport
 - Search with an empty query(q = \*:\*), and you should get some results.
 
+<h5>OR</h5>
+- Navigate to the flask app base folder
+- With your virtual environment activated, run the command "python run.py refresh_index"
+
