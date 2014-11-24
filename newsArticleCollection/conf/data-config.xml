@@ -1,0 +1,28 @@
+<dataConfig>
+        <dataSource type="FileDataSource" encoding="UTF-8" />
+        <document>
+            <entity
+                        name="pickupdir"
+                        processor="FileListEntityProcessor"
+                        rootEntity="false"
+                        dataSource="null"
+                        fileName=".*.xml$"
+                        baseDir="/home/kenob/01"
+                        recursive="true"
+                    >
+                <entity name="nitf"
+                        processor="XPathEntityProcessor"
+                        stream="true"
+                        forEach="/nitf/"
+                        url="${pickupdir.fileAbsolutePath}"
+                        transformer="RegexTransformer,DateFormatTransformer"
+                        >
+                    <field column="id" xpath="/nitf/head/title" />
+                    <field column="keywords" xpath="/nitf/head/docdata/identified-content/classifier"/>
+                    <field column="content" xpath="/nitf/body/body.content/block" />
+                    <field column="persons" xpath="/nitf/head/docdata/identified-content/person" />
+
+                </entity>
+           </entity>
+        </document>
+</dataConfig>
