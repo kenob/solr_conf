@@ -3,7 +3,7 @@ solr_conf
 
 This repository currently holds the solr files for indexing news articles from the NYC news corpus.
 
-Use as follows:
+<h3>Basic Setup</h3>
 - Install solr as described <a href="http://lucene.apache.org/solr/4_2_1/tutorial.html">here</a>
 - Navigate to example folder in the directory of your solr installation
 - Delete the solr folder
