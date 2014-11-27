@@ -9,18 +9,28 @@ This repository currently holds the solr files for indexing news articles from t
 - Delete the solr folder
 - Clone this repository, and rename the resulting folder to "solr"
 
-<h3>Corpus-Specific Setup </h3>
+<h3>Instance-Specific Setup </h3>
 <h5> NYC Corpus </h5>
 - Create a folder 
-- Download all tgz files from the NYC_* folder on ublearns, and place them in a folder
+- Download all tgz files from the NYT Corpus folder under projects on ublearns, and place them in a folder
 - Extract the tgz files
-- Change the baseDir property on line 10 of newsArticleCollection/data-config.xml to the <strong>ABSOLUTE</strong> path of the folder created above
+- Change the newsDataDirectory property on line 10 of newsArticleCollection/core.properties to the <strong>ABSOLUTE</strong> path of the folder created above. No quotes are required, but for windows, you'll have to replace "\\" with "\\\"
+
+<h5> Wikipedia Articles </h5>
+- Download and extract wikipedia xml files [[TODO:place url here]] and put them in a folder
+- Depeat the final step for NYC corpus above, replacing newsDataDirectory with wikiDataDirectory and newsArticleCollection with wikiArticleCollection
 
 <h3> Usage </h3>
-- Run the solr admin panel, navigate to the newsArticleCollection core, and execute a dataImport
-- Search with an empty query(q = \*:\*), and you should get some results.
+
+<h4>Indexing </h4>
+- Run the solr admin panel, and execute a dataImport on either the newsArticleCollection or wikiArticleCollection core to index news articles and wikipedia articles respectively 
 
 <h5>OR</h5>
+
 - Navigate to the flask app base folder
-- With your virtual environment activated, run the command "python run.py refresh_index"
+- With your virtual environment activated, run the command "python run.py refresh_index <wiki or news>"
+
+<h4> Searching </h4>
+- Run queries on the solr admin panel
+- To search in the flask web application, import and use either the search or get_item helper defined in app/utils.py as shown in app/views.py
 
