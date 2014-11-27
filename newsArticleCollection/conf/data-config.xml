@@ -7,7 +7,7 @@
                         rootEntity="false"
                         dataSource="null"
                         fileName=".*.xml$"
-                        baseDir="/home/kenob/NYC"
+                        baseDir="${newsDataDirectory}"
                         recursive="true"
                     >
                 <entity name="nitf"
@@ -17,11 +17,13 @@
                         url="${pickupdir.fileAbsolutePath}"
                         transformer="RegexTransformer,DateFormatTransformer"
                         >
-                    <field column="id" xpath="/nitf/head/title" />
+                    <field column="id" xpath="/nitf/head/docdata/doc-id/@id-string" />
+                    <field column="title" xpath="/nitf/head/title" />
                     <field column="keywords" xpath="/nitf/head/docdata/identified-content/classifier"/>
-                    <field column="content" xpath="/nitf/body/body.content/block" />
+                    <field column="news_body" xpath="/nitf/body/body.content/block[@class='lead_paragraph']/p" />
                     <field column="persons" xpath="/nitf/head/docdata/identified-content/person" />
-
+                    <field column="links" xpath="/nitf/head/pubdata/@ex-ref" />
+                    <field column="pub_date" xpath="/nitf/head/pubdata/@date.publication" />
                 </entity>
            </entity>
         </document>
