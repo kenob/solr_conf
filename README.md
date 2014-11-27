@@ -28,5 +28,5 @@ This repository currently holds the solr files for indexing news articles from t
 
 <h4> Searching </h4>
 - Run queries on the solr admin panel
-- To search in the flask web application, import and use any the search or get_item helpers defined in app/utils.py as shown in app/views.py
+- To search in the flask web application, import and use either the search or get_item helpers defined in app/utils.py as shown in app/views.py
 
