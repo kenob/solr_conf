@@ -22,7 +22,7 @@
         			<field column="revision"  xpath="/mediawiki/page/revision/id" />
                     <field column="user"      xpath="/mediawiki/page/revision/contributor/username" />
                     <field column="userId"    xpath="/mediawiki/page/revision/contributor/id" />
-        			<field column="text"      xpath="/mediawiki/page/revision/text" />            
+        			<field column="wiki_body" xpath="/mediawiki/page/revision/text" />            
                </entity>
             </entity>
         </document>
