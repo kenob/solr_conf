@@ -24,11 +24,9 @@ This repository currently holds the solr files for indexing news articles from t
 <h5>OR</h5>
 
 - Navigate to the flask app base folder
-- With your virtual environment activated, run the command "python run.py refresh_index"
+- With your virtual environment activated, run the command "python run.py refresh_index <wiki or news>"
 
 <h4> Searching </h4>
 - Run queries on the solr admin panel
-
-<h5>OR</h5>
-- Import and use any the search or get_item helpers defined in utils.py as shown in views.py
+- To search in the flask web application, import and use any the search or get_item helpers defined in app/utils.py as shown in app/views.py
 
