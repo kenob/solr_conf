@@ -17,10 +17,18 @@ This repository currently holds the solr files for indexing news articles from t
 - Change the baseDir property on line 10 of newsArticleCollection/data-config.xml to the <strong>ABSOLUTE</strong> path of the folder created above
 
 <h3> Usage </h3>
-- Run the solr admin panel, navigate to the newsArticleCollection core, and execute a dataImport
-- Search with an empty query(q = \*:\*), and you should get some results.
+
+<h4>Indexing </h4>
+- Run the solr admin panel, and execute a dataImport on either the newsArticleCollection or wikiArticleCollection core to index news articles and wikipedia articles respectively 
 
 <h5>OR</h5>
+
 - Navigate to the flask app base folder
 - With your virtual environment activated, run the command "python run.py refresh_index"
+
+<h4> Searching </h4>
+- Run queries on the solr admin panel
+
+<h5>OR</h5>
+- Import and use any the search or get_item helpers defined in utils.py as shown in views.py
 
