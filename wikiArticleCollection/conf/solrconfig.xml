@@ -1322,7 +1322,7 @@
 	<str name="name">ibspellcheck</str>
     <str name="classname">solr.IndexBasedSpellChecker</str>
     <str name="spellcheckIndexDir">./spellchecker</str>
-    <str name="field">wiki_body</str>
+    <str name="field">sp_wiki_body</str>
     <str name="buildOnCommit">true</str>
 	</lst> 
 

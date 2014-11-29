@@ -157,6 +157,10 @@
    <field name="last_modified" type="date" indexed="true" stored="true"/>
    <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="wiki_body" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="sp_wiki_body" type="text_sp" indexed="true" stored="true" multiValued="true"/>
+
+
+   <copyField source="wiki_body" dest="sp_wiki_body"/> 
 
    <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
@@ -523,6 +527,36 @@
 	-->
         <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
+    </fieldType>
+
+    <!-- A text field for spell check -->
+      <fieldType name="text_sp" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <!-- in this example, we will only use synonyms at query time
+        <filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>
+        -->
+        <!-- Case insensitive stop word removal.
+        -->
+        <filter class="solr.StopFilterFactory"
+                ignoreCase="true"
+                words="lang/stopwords_en.txt"
+                />
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EnglishPossessiveFilterFactory"/>              
+      </analyzer>
+
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.StopFilterFactory"
+                ignoreCase="true"
+                words="lang/stopwords_en.txt"
+                />
+        <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>       
+      </analyzer>
+
     </fieldType>
 
     <!-- A text field with defaults appropriate for English, plus
