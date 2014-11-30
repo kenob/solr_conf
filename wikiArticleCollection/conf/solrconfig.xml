@@ -841,7 +841,7 @@
      <lst name="defaults">
        <str name="echoParams">explicit</str>
        <int name="rows">10</int>
-       <str name="df">text</str>
+       <str name="df">wiki_body</str>
      </lst>
     <!-- In addition to defaults, "appends" params can be specified
          to identify values which should be appended to the list of
@@ -903,7 +903,7 @@
        <str name="echoParams">explicit</str>
        <str name="wt">json</str>
        <str name="indent">true</str>
-       <str name="df">text</str>
+       <str name="df">wiki_body</str>
      </lst>
   </requestHandler>
 
@@ -1380,7 +1380,7 @@
     -->
   <requestHandler name="/spell" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
-      <str name="df">text</str>
+      <str name="df">sp_wiki_body</str>
       <!-- Solr will use suggestions from both the 'default' spellchecker
            and from the 'wordbreak' spellchecker and combine them.
            collations (re-written queries) can include a combination of
@@ -1400,27 +1400,27 @@
     <arr name="last-components">
       <str>spellcheck</str>
     </arr>
-  </requestHandler>
+  </requestHandler> 
 
-  <searchComponent name="suggest" class="solr.SuggestComponent">
-  	<lst name="suggester">
-      <str name="name">mySuggester</str>
-      <str name="lookupImpl">FuzzyLookupFactory</str>      <!-- org.apache.solr.spelling.suggest.fst -->
-      <str name="dictionaryImpl">DocumentDictionaryFactory</str>     <!-- org.apache.solr.spelling.suggest.HighFrequencyDictionaryFactory --> 
-      <str name="field">cat</str>
-      <str name="weightField">price</str>
-      <str name="suggestAnalyzerFieldType">string</str>
-    </lst>
+  <searchComponent name="suggest" class="solr.SpellCheckComponent">
+     <lst name="spellchecker">
+      <str name="name">suggest</str>
+      <str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
+      <str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
+      <str name="field">sp_wiki_body</str>
+     </lst>
   </searchComponent>
 
-  <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
+  <requestHandler name="/suggest" class="org.apache.solr.handler.component.SearchHandler">
     <lst name="defaults">
-      <str name="suggest">true</str>
-      <str name="suggest.count">10</str>
+      <str name="spellcheck">true</str>
+      <str name="spellcheck.dictionary">suggest</str>
+      <str name="spellcheck.count">10</str>
+      <str name="comparatorClass">freq</str>
     </lst>
-    <arr name="components">
+      <arr name="components">
       <str>suggest</str>
-    </arr>
+      </arr>
   </requestHandler>
   <!-- Term Vector Component
 

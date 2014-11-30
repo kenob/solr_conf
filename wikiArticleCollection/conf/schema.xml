@@ -160,9 +160,12 @@
    <field name="sp_wiki_body" type="text_sp" indexed="true" stored="true" multiValued="true"/>
 
 
-   <copyField source="wiki_body" dest="sp_wiki_body"/> 
-
-   <!-- Main body of document extracted by SolrCell.
+   <copyField source="wiki_body" dest="sp_wiki_body"/>
+   <copyField source="title" dest="sp_wiki_body"/> 
+   
+   <!--<copyField source="wiki_body" dest="suggest_wiki_body"/>-->
+   <!--<copyField source="title" dest="suggest_wiki_body"/>-->
+      <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
         using copyField below. This is to save space. Use this field for returning and
         highlighting document content. Use the "text" field to search the content. -->
