@@ -842,6 +842,7 @@
        <str name="echoParams">explicit</str>
        <int name="rows">10</int>
        <str name="df">wiki_body</str>
+       <str name="sort">score desc</str>
      </lst>
     <!-- In addition to defaults, "appends" params can be specified
          to identify values which should be appended to the list of
@@ -1395,7 +1396,9 @@
       <str name="spellcheck.collate">true</str>
       <str name="spellcheck.collateExtendedResults">true</str>  
       <str name="spellcheck.maxCollationTries">10</str>
-      <str name="spellcheck.maxCollations">5</str>         
+      <str name="spellcheck.maxCollations">5</str>
+
+      <str name="sort">score desc</str>         
     </lst>
     <arr name="last-components">
       <str>spellcheck</str>
@@ -1407,7 +1410,7 @@
       <str name="name">suggest</str>
       <str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
       <str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
-      <str name="field">sp_wiki_body</str>
+      <str name="field">suggest_wiki_body</str>
      </lst>
   </searchComponent>
 
@@ -1420,6 +1423,8 @@
       <str name="spellcheck.collate">true</str>
       <str name="spellcheck.maxCollationTries">10</str>
       <str name="spellcheck.maxCollations">5</str> 
+
+      <str name="sort">score desc</str>
     </lst>
       <arr name="components">
       <str>suggest</str>

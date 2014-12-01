@@ -157,12 +157,12 @@
    <field name="last_modified" type="date" indexed="true" stored="true"/>
    <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="wiki_body" type="text_general" indexed="true" stored="true" multiValued="true"/>
-   <field name="sp_wiki_body" type="text_sp" indexed="true" stored="true" multiValued="true"/>
-
+   <field name="sp_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
+   <field name="suggest_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
 
    <copyField source="wiki_body" dest="sp_wiki_body"/>
    <copyField source="title" dest="sp_wiki_body"/> 
-   
+   <copyField source="title" dest="suggest_wiki_body"/>
    <!--<copyField source="wiki_body" dest="suggest_wiki_body"/>-->
    <!--<copyField source="title" dest="suggest_wiki_body"/>-->
       <!-- Main body of document extracted by SolrCell.
@@ -559,8 +559,11 @@
         <filter class="solr.LowerCaseFilterFactory"/>
       <filter class="solr.EnglishPossessiveFilterFactory"/>       
       </analyzer>
-
+      <similarity class="solr.BM25SimilarityFactory"/>      
     </fieldType>
+
+    <!-- Global Similarity Declaration -->
+    <similarity class="solr.SchemaSimilarityFactory"/>
 
     <!-- A text field with defaults appropriate for English, plus
 	 aggressive word-splitting and autophrase features enabled.
