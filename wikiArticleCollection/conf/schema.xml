@@ -160,6 +160,15 @@
    <field name="wiki_body_sanitized" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
 
    <!-- Main body of document extracted by SolrCell.
+   <field name="sp_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
+   <field name="suggest_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
+
+   <copyField source="wiki_body" dest="sp_wiki_body"/>
+   <copyField source="title" dest="sp_wiki_body"/> 
+   <copyField source="title" dest="suggest_wiki_body"/>
+   <!--<copyField source="wiki_body" dest="suggest_wiki_body"/>-->
+   <!--<copyField source="title" dest="suggest_wiki_body"/>-->
+      <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
         using copyField below. This is to save space. Use this field for returning and
         highlighting document content. Use the "text" field to search the content. -->
@@ -526,6 +535,39 @@
         <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
+
+    <!-- A text field for spell check -->
+      <fieldType name="text_sp" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <!-- in this example, we will only use synonyms at query time
+        <filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>
+        -->
+        <!-- Case insensitive stop word removal.
+        -->
+        <filter class="solr.StopFilterFactory"
+                ignoreCase="true"
+                words="lang/stopwords_en.txt"
+                />
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EnglishPossessiveFilterFactory"/>              
+      </analyzer>
+
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.StopFilterFactory"
+                ignoreCase="true"
+                words="lang/stopwords_en.txt"
+                />
+        <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>       
+      </analyzer>
+      <similarity class="solr.BM25SimilarityFactory"/>      
+    </fieldType>
+
+    <!-- Global Similarity Declaration -->
+    <similarity class="solr.SchemaSimilarityFactory"/>
 
     <!-- A text field with defaults appropriate for English, plus
 	 aggressive word-splitting and autophrase features enabled.
