@@ -158,8 +158,6 @@
    <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="wiki_body" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <field name="wiki_body_sanitized" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
-
-   <!-- Main body of document extracted by SolrCell.
    <field name="sp_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
    <field name="suggest_wiki_body" type="text_sp" indexed="true" stored="false" multiValued="true"/>
 
@@ -168,7 +166,8 @@
    <copyField source="title" dest="suggest_wiki_body"/>
    <!--<copyField source="wiki_body" dest="suggest_wiki_body"/>-->
    <!--<copyField source="title" dest="suggest_wiki_body"/>-->
-      <!-- Main body of document extracted by SolrCell.
+      
+  <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
         using copyField below. This is to save space. Use this field for returning and
         highlighting document content. Use the "text" field to search the content. -->
