@@ -157,6 +157,7 @@
    <field name="last_modified" type="date" indexed="true" stored="true"/>
    <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="wiki_body" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="wiki_body_sanitized" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
 
    <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
@@ -288,6 +289,7 @@
    <copyField source="content_type" dest="text"/>
    <copyField source="resourcename" dest="text"/>
    <copyField source="url" dest="text"/>
+   <copyField source="wiki_body" dest="wiki_body_sanitized"/>
 
    <!-- Create a string version of author for faceting -->
    <copyField source="author" dest="author_s"/>

@@ -2,12 +2,37 @@
         <dataSource type="FileDataSource" encoding="UTF-8" />
         <document>
             <entity
+                        name="reuters_pickup"
+                        processor="FileListEntityProcessor"
+                        rootEntity="false"
+                        dataSource="null"
+                        fileName=".*.xml$"
+                        baseDir="${newsDataDirectory}/reuters/"
+                        recursive="true"
+                    >
+                <entity name="reuters"
+                        processor="XPathEntityProcessor"
+                        stream="true"
+                        forEach="/reuters/doc/"
+                        url="${reuters_pickup.fileAbsolutePath}"
+                        transformer="RegexTransformer,DateFormatTransformer"
+                        >
+                    <field column="id" xpath="/reuters/doc/head/docdata/doc-id/@id-string" />
+                    <field column="title" xpath="/reuters/doc/head/title" />
+                    <field column="keywords" xpath="/reuters/doc/head/docdata/identified-content/classifier"/>
+                    <field column="news_body" xpath="/reuters/doc/body/body.content/block/p" />
+                    <field column="persons" xpath="/reuters/doc/head/docdata/identified-content/person" />
+                    <field column="links" xpath="/reuters/doc/head/pubdata/@ex-ref" />
+                    <field column="pub_date" xpath="/reuters/doc/head/pubdata/@date.publication" />
+                </entity>
+           </entity>
+            <entity
                         name="pickupdir"
                         processor="FileListEntityProcessor"
                         rootEntity="false"
                         dataSource="null"
                         fileName=".*.xml$"
-                        baseDir="${newsDataDirectory}"
+                        baseDir="${newsDataDirectory}/NYT/"
                         recursive="true"
                     >
                 <entity name="nitf"
