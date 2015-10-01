@@ -1,7 +1,7 @@
 solr_conf
 =========
 
-This repository currently holds the solr files for indexing news articles from the NYC news corpus and wikipedia articles from wikimedia xml files
+This repository currently holds the solr files for indexing news articles from the NY Times news corpus and wikipedia articles from wikimedia xml files
 
 <h3>Basic Setup</h3>
 - Install solr as described <a href="http://lucene.apache.org/solr/4_2_1/tutorial.html">here</a>
