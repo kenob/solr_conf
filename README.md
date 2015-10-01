@@ -10,7 +10,7 @@ This repository currently holds the solr files for indexing news articles from t
 - Clone this repository, and rename the resulting folder to "solr"
 
 <h3>Instance-Specific Setup </h3>
-<h5> NYC Corpus </h5>
+<h5> NY Times Corpus </h5>
 - Create a folder 
 - Download all tgz files from the NYT Corpus folder under projects on ublearns, and place them in a folder
 - Extract the tgz files
