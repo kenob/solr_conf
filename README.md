@@ -18,7 +18,7 @@ This repository currently holds the solr files for indexing news articles from t
 
 <h5> Wikipedia Articles </h5>
 - Download and extract wikipedia xml files [[TODO:place url here]] and put them in a folder
-- Depeat the final step for NYC corpus above, replacing newsDataDirectory with wikiDataDirectory and newsArticleCollection with wikiArticleCollection
+- Repeat the final step for NYC corpus above, replacing newsDataDirectory with wikiDataDirectory and newsArticleCollection with wikiArticleCollection
 
 <h3> Usage </h3>
 
